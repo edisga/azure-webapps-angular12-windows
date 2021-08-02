@@ -86,20 +86,26 @@ goto :EOF
 :: ----------
 
 :Deployment
-echo Handling node.js deployment.
-
+echo **********************************
+echo * Handling node.js deployment... *
+echo **********************************
+ 
 :: 1. Select node version
+echo *****************************
+echo * Selecting node version... *
+echo *****************************
 call :SelectNodeVersion
 
 :: 2. Install npm packages
-echo **************************************
-echo *Installing npm packages... *
-echo **************************************
+echo ******************************
+echo * Installing npm packages... *
+echo ******************************
+ 
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
-  pushd "%DEPLOYMENT_SOURCE%"
-  call :ExecuteCmd !NPM_CMD! install --production
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
+ pushd "%DEPLOYMENT_SOURCE%"
+ call :ExecuteCmd !NPM_CMD! install --no-optional
+ IF !ERRORLEVEL! NEQ 0 goto error
+ popd
 )
 
 :: 3. Build application
