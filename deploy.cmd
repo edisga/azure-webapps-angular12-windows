@@ -92,6 +92,9 @@ echo Handling node.js deployment.
 call :SelectNodeVersion
 
 :: 2. Install npm packages
+echo **************************************
+echo *Installing npm packages... *
+echo **************************************
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
   call :ExecuteCmd !NPM_CMD! install --production
