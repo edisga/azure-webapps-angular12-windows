@@ -115,7 +115,7 @@ echo **************************************
  
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
  pushd "%DEPLOYMENT_SOURCE%"
- call :ExecuteCmd !NPM_CMD! build
+ call :ExecuteCmd !NPM_CMD! run build
  IF !ERRORLEVEL! NEQ 0 goto error
  popd
 )
