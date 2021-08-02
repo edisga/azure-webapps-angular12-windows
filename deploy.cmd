@@ -104,7 +104,7 @@ echo **************************************
 echo * Attempting to build application... *
 echo **************************************
  
-call :ExecuteCmd %DEPLOYMENT_SOURCE%\node_modules\.bin\ng.cmd build --prod 
+call :ExecuteCmd "%DEPLOYMENT_SOURCE%\node_modules\.bin\ng.cmd build --prod" 
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 4. KuduSync
