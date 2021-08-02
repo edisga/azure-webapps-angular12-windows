@@ -113,8 +113,12 @@ echo **************************************
 echo * Attempting to build application... *
 echo **************************************
  
-call :ExecuteCmd "%DEPLOYMENT_SOURCE%\node_modules\.bin\ng.cmd build --prod" 
-IF !ERRORLEVEL! NEQ 0 goto error
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+ pushd "%DEPLOYMENT_SOURCE%"
+ call :ExecuteCmd !NPM_CMD! build
+ IF !ERRORLEVEL! NEQ 0 goto error
+ popd
+)
 
 :: 4. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
